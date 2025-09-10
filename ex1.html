@@ -19,12 +19,36 @@
         
             function validateForm(formName) {
                 // Error messages:
-                // Invalid age: Age must be between 10 and 40.
-                // Invalid email: Email must contain the character @.
-                // Empty password: Password must be non-empty.
                 var errorMessages="";
-                
-                
+                const iderror = "ID value cannot be more than 10 characters.\n";
+                const ageerror = "Age must be between 10 and 40.\n";
+                const emailerror = "Email must contain the character @.\n";
+                const pwerror = "Password must be non-empty.\n";
+                // Invalid age: Age must be between 10 and 40.
+                let frmElem = document.forms[formName];
+                const idVal = frmElem["id"].value;
+                const ageVal = frmElem["age"].value;
+                const pwVal = frmElem["password"].value;
+                const emailVal = frmElem["email"].value;
+                if(idVal > 10){
+                    errorMessages += iderror;
+                }
+                if(ageVal < 10 || age > 40){
+                    errorMessages += ageerror;
+                }
+                // Invalid email: Email must contain the character @.
+                // using indexOf function => if(emailVal.indexOf("@") == -1)
+                if (!emailVal.includes("@")) {
+                    errorMessages+= emailerror;
+                }
+                // Empty password: Password must be non-empty.
+                if(pwVal.trim().length === 0) {
+                    errorMessages+=pwerror;
+                }
+                if(errorMessages.length != 0) {
+                    alert(errorMessages);
+                    return false;
+                }
             }
      
          </script>
